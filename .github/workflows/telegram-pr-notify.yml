@@ -1,4 +1,4 @@
-# .github/workflows/telegram-notify.yml
+# .github/workflows/telegram-pr-notify.yml
 name: Telegram Notification
 
 on:
