@@ -11,10 +11,8 @@
         tgToken: process.env.TG_BOT_TOKEN,
         tgDeployNotifyMessageThreadId: process.env.TG_DEPLOY_NOTIFY_MESSAGE_THREAD_ID,
         tgDeployNotifyChatId: process.env.TG_DEPLOY_NOTIFY_CHAT_ID,
-        ee: process.env.EVENT
     };
 
-    console.dir(prData.ee);
 
     const url = `https://api.telegram.org/bot${prData.tgToken}/sendMessage`;
 
