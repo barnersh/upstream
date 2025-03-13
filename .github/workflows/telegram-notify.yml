@@ -22,14 +22,14 @@ jobs:
       - name: Send Telegram Notify
         id: send-telegram-notify
         env:
-          PR_TITLE: ${{ github.event.client_payload.title }}
-          PR_NUMBER: ${{ github.event.client_payload.number }}
-          PR_AUTHOR: ${{ github.event.client_payload.user }}
-          PR_URL: ${{ github.event.client_payload.html_url }}
+          PR_TITLE: ${{ github.event.client_payload.event.pull_request.title }}
+          PR_NUMBER: ${{ github.event.client_payload.event.pull_request.number }}
+          PR_AUTHOR: ${{ github.event.client_payload.event.pull_request.user }}
+          PR_URL: ${{ github.event.client_payload.event.pull_request.html_url }}
           PR_REPO: ${{ github.event.client_payload.repository }}
-          PR_BRANCH: ${{ github.event.client_payload.branch }}
-          PR_BASE: ${{ github.event.client_payload.base }}
-          PR_DESCRIPTION: ${{ github.event.client_payload.description }}
+          PR_BRANCH: ${{ github.event.client_payload.event.pull_request.branch }}
+          PR_BASE: ${{ github.event.client_payload.event.pull_request.base }}
+          PR_DESCRIPTION: ${{ github.event.client_payload.event.pull_request.description }}
           TG_BOT_TOKEN: ${{ secrets.CHANNEL_NOTIFY_TELEGRAM_BOT_TOKEN }}
           TG_DEPLOY_NOTIFY_MESSAGE_THREAD_ID: ${{ vars.CHANNEL_NOTIFY_TELEGRAM_MESSAGE_THREAD_ID }}
           TG_DEPLOY_NOTIFY_CHAT_ID: ${{ vars.CHANNEL_NOTIFY_TELEGRAM_CHAT_ID }}
