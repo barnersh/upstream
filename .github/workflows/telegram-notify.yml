@@ -1,0 +1,27 @@
+# .github/workflows/telegram-notify.yml
+name: Telegram Notification
+
+on:
+  repository_dispatch:
+    types: [pr_opened_event]
+
+jobs:
+  send-telegram-notification:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Send Telegram notification
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            📣 新的 PR 已建立！
+            
+            儲存庫: ${{ github.event.client_payload.repository }}
+            PR 標題: ${{ github.event.client_payload.title }}
+            作者: ${{ github.event.client_payload.sender }}
+            連結: ${{ github.event.client_payload.html_url }}
+
