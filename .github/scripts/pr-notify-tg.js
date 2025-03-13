@@ -14,7 +14,7 @@
         ee: process.env.EVENT
     };
 
-    console.log(prData.ee);
+    console.log(JSON.stringify(prData.ee));
 
     const url = `https://api.telegram.org/bot${prData.tgToken}/sendMessage`;
 
