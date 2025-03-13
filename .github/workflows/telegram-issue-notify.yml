@@ -1,0 +1,32 @@
+# .github/workflows/telegram-pr-notify.yml
+name: Telegram Notification
+
+on:
+  repository_dispatch:
+    types: [issue_opened_event]
+
+jobs:
+  send-telegram-notification:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Send Telegram Notify
+        id: send-telegram-notify
+        env:
+          ISSUE_TITLE: ${{ github.event.client_payload.title }}
+          ISSUE_URL: ${{ github.event.client_payload.html_url }}
+          ISSUE_REPO: ${{ github.event.client_payload.repository }}
+          ISSUE_DESCRIPTION: ${{ github.event.client_payload.description }}
+          TG_BOT_TOKEN: ${{ secrets.CHANNEL_NOTIFY_TELEGRAM_BOT_TOKEN }}
+          TG_DEPLOY_NOTIFY_MESSAGE_THREAD_ID: ${{ vars.CHANNEL_NOTIFY_TELEGRAM_MESSAGE_THREAD_ID }}
+          TG_DEPLOY_NOTIFY_CHAT_ID: ${{ vars.CHANNEL_NOTIFY_TELEGRAM_CHAT_ID }}
+        run: node .github/scripts/issue-notify-tg.js
