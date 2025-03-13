@@ -22,6 +22,7 @@ jobs:
       - name: Send Telegram Notify
         id: send-telegram-notify
         env:
+          EVENT: ${{ github.event.client_payload.event }}
           PR_TITLE: ${{ github.event.client_payload.event.pull_request.title }}
           PR_NUMBER: ${{ github.event.client_payload.event.pull_request.number }}
           PR_AUTHOR: ${{ github.event.client_payload.event.pull_request.user }}
