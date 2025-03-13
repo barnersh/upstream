@@ -9,19 +9,28 @@ jobs:
   send-telegram-notification:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
-      
-      - name: Send Telegram notification
-        uses: appleboy/telegram-action@master
         with:
-          to: ${{ secrets.TELEGRAM_TO }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: |
-            📣 新的 PR 已建立！
-            
-            儲存庫: ${{ github.event.client_payload.repository }}
-            PR 標題: ${{ github.event.client_payload.title }}
-            作者: ${{ github.event.client_payload.sender }}
-            連結: ${{ github.event.client_payload.html_url }}
+          fetch-depth: 0
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Send Telegram Notify
+        id: send-telegram-notify
+        env:
+          PR_TITLE: ${{ github.event.client_payload.title }}
+          PR_NUMBER: ${{ github.event.client_payload.number }}
+          PR_AUTHOR: ${{ github.event.client_payload.user }}
+          PR_URL: ${{ github.event.client_payload.html_url }}
+          PR_REPO: ${{ github.event.client_payload.repository }}
+          PR_BRANCH: ${{ github.event.client_payload.branch }}
+          PR_BASE: ${{ github.event.client_payload.base }}
+          PR_DESCRIPTION: ${{ github.event.client_payload.description }}
+          TG_BOT_TOKEN: ${{ secrets.CHANNEL_NOTIFY_TELEGRAM_BOT_TOKEN }}
+          TG_DEPLOY_NOTIFY_MESSAGE_THREAD_ID: ${{ vars.CHANNEL_NOTIFY_TELEGRAM_MESSAGE_THREAD_ID }}
+          TG_DEPLOY_NOTIFY_CHAT_ID: ${{ vars.CHANNEL_NOTIFY_TELEGRAM_CHAT_ID }}
+        run: node .github/scripts/pr-notify-tg.js
