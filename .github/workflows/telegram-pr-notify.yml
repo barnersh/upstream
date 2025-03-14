@@ -1,5 +1,5 @@
 # .github/workflows/telegram-pr-notify.yml
-name: Telegram Notification
+name: Telegram Pull Request Notification
 
 on:
   repository_dispatch:
