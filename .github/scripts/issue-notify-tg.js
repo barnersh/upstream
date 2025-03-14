@@ -21,6 +21,7 @@
             message_thread_id: `${prData.tgDeployNotifyMessageThreadId}`,
             chat_id: `${prData.tgDeployNotifyChatId}`,
             text: `
+新的 Issue 建立
 🔔 *${prData.repo}*
 📌 [${prData.title}](${prData.url})
 📝 描述:

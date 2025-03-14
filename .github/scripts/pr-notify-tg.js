@@ -25,6 +25,7 @@
             message_thread_id: `${prData.tgDeployNotifyMessageThreadId}`,
             chat_id: `${prData.tgDeployNotifyChatId}`,
             text: `
+新的 Pull Request
 🔔 *${prData.repo}*
 📌 [#${prData.number}: ${prData.title}](${prData.url})
 👤 ${prData.author}
