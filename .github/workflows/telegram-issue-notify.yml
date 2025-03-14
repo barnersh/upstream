@@ -26,7 +26,7 @@ jobs:
           DATABASE_ID: "1b24f7892901803b9615f947a0baad01"
           ISSUE_TITLE: ${{ github.event.client_payload.title }}
           ISSUE_URL: ${{ github.event.client_payload.html_url }}
-        run: node github/scripts/create-notion-task.js
+        run: node .github/scripts/create-notion-task.js
 
       - name: Send Telegram Notify
         id: send-telegram-notify
