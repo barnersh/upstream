@@ -4,7 +4,7 @@
             notionToken: process.env.NOTION_TOKEN,
             databaseId: process.env.DATABASE_ID,
             issueTitle: process.env.ISSUE_TITLE,
-            issueUrl: process.env.ISSU_URL,
+            issueUrl: process.env.ISSUE_URL,
         };
 
         const response = await fetch('https://api.notion.com/v1/pages', {
