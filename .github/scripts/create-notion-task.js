@@ -35,8 +35,6 @@
             })
         });
 
-        console.log(response)
-
         if (!response.ok) {
             const errorData = await response.json();
             throw new Error(`Notion API error: ${response.status} - ${JSON.stringify(errorData)}`);
