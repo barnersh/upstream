@@ -11,7 +11,6 @@
         tgToken: process.env.TG_BOT_TOKEN,
         tgDeployNotifyMessageThreadId: process.env.TG_DEPLOY_NOTIFY_MESSAGE_THREAD_ID,
         tgDeployNotifyChatId: process.env.TG_DEPLOY_NOTIFY_CHAT_ID,
-        ggEvent: process.env.GG_EVENT
     };
 
 
@@ -28,7 +27,6 @@
             text: `
 新的 Pull Request
 🔔 *${prData.repo}*
-🔔 *${prData.ggEvent.pull_request.title}*
 📌 [#${prData.number}: ${prData.title}](${prData.url})
 👤 ${prData.author}
 🔀 \`${prData.branch}\` → \`${prData.base}\`

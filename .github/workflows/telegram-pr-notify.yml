@@ -33,5 +33,4 @@ jobs:
           TG_BOT_TOKEN: ${{ secrets.CHANNEL_NOTIFY_TELEGRAM_BOT_TOKEN }}
           TG_DEPLOY_NOTIFY_MESSAGE_THREAD_ID: ${{ vars.CHANNEL_NOTIFY_TELEGRAM_MESSAGE_THREAD_ID }}
           TG_DEPLOY_NOTIFY_CHAT_ID: ${{ vars.CHANNEL_NOTIFY_TELEGRAM_CHAT_ID }}
-          GG_EVENT: ${{ github.event.client_payload.github_event }}
         run: node .github/scripts/pr-notify-tg.js
