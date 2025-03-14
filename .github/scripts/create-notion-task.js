@@ -29,7 +29,7 @@
                         ]
                     },
                     URL: {
-                        url: issueUrl
+                        url: `${data.issueUrl}`
                     }
                 }
             })
