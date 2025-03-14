@@ -19,6 +19,15 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Create Notion Task
+        id: create-notion-task
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_INTEGRATION_TOKEN }}
+          DATABASE_ID: "1b24f7892901803b9615f947a0baad01"
+          ISSUE_TITLE: ${{ github.event.client_payload.title }}
+          ISSUE_URL: ${{ github.event.client_payload.html_url }}
+        run: node github/scripts/create-notion-task.js
+
       - name: Send Telegram Notify
         id: send-telegram-notify
         env:
